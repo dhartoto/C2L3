@@ -1,0 +1,23 @@
+<% posts.each do |post| %>
+  <div class="row">
+    <div class='span8 well'>
+      
+      <%= render post.categories %> <!--This passes in each category obj and looks for the category partial in the categories folder -->
+      
+      <h4><%= link_to post.title, "http://#{post.url}" %></li></h4>
+      <p><%= post.description %></p>
+      <p>
+        <span class='quiet'>posted </span>
+          <% if post.creator == nil %>
+
+          <% else %>
+            by <%= post.creator.username %>
+          <% end %>
+        at <%= fix_date(post.created_at) %>
+      </p>
+      <span>
+        <%= link_to "#{post.comments.size} comments", post_path(post) %>
+      </span>
+    </div>
+  </div>
+<% end %>
