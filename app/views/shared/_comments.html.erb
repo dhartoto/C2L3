@@ -1,0 +1,18 @@
+<% obj.comments.each do |comment| %>
+  <div class = "row">
+    <div class="well span8 offset2">
+      <em>"<%= comment.body %>"</em>
+      <% if show == true %>
+        on <%= link_to "#{comment.post.title}", post_path(comment.post) %>
+      <% end %>
+      <br/>
+        <span class='quiet'>commented </span>
+          <% if comment.creator == nil %>
+
+          <% else %>
+            by <%= link_to comment.creator.username, user_path(obj) %>
+          <% end %>
+        at <%= fix_date(comment.created_at) %>
+    </div>
+  </div>
+<% end %>

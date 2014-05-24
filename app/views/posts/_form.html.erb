@@ -1,25 +1,24 @@
 <%= render 'shared/alert', alert: @post.errors %>
 
-<div class= 'well span8'>
+<div class= 'well span3 offset4'>
+  <%= form_for @post do |f| %>
 
-<%= form_for @post do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <br/>
+    <%= f.label :url %>
+    <%= f.text_field :url %>
+    <br/>
+    <%= f.label :description %>
+    <%= f.text_area :description, rows: 5 %>
+    <br/>
 
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <br/>
-  <%= f.label :url %>
-  <%= f.text_field :url %>
-  <br/>
-  <%= f.label :description %>
-  <%= f.text_area :description, rows: 5 %>
-  <br/>
+    <% Category.all.each do |category| %>
+      <%= check_box_tag("post[category_ids][]", category.id, @post.categories.include?(category)) %>
+      <%= category.name %>
+    <% end %>
 
-  <% Category.all.each do |category| %>
-    <%= check_box_tag("post[category_ids][]", category.id, @post.categories.include?(category)) %>
-    <%= category.name %>
+    <br/>
+    <%= f.submit(@post.new_record? ? 'Create Post' : 'Update Post', class: 'btn btn-primary') %>
   <% end %>
-
-  <br/>
-  <%= f.submit(@post.new_record? ? 'Create Post' : 'Update Post', class: 'btn btn-primary') %>
-<% end %>
 </div>
