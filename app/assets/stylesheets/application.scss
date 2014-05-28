@@ -43,9 +43,43 @@ div.comment_votes {
 }
 
 body {
-  //background: url('IMG_8609.JPG');
+  background: url('background.jpg');
 }
 
 #register {
   margin-left: 25px;
+}
+
+.lead {
+    text-decoration: none;
+    a, a:hover, a:focus {
+    text-decoration: none;
+  }
+}
+
+.span12 {
+  margin-top: 30px;
+}
+
+.navbar-inner {
+    background-color: #65909A;
+    background-image: linear-gradient(to bottom, #68838B, #65909A);
+    background-repeat: repeat-x;
+    border: 1px solid #65909A;
+    border-radius: 0px;
+
+}
+
+.navbar .brand {
+  text-shadow: none;
+  color: #fff;
+}
+
+.navbar .nav > li > a {
+  text-shadow: none;
+  color: #fff;
+}
+
+.btn-mini {
+  font-size: 14px;
 }

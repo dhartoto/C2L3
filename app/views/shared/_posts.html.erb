@@ -1,11 +1,23 @@
 <% posts.each do |post| %>
   <div class="row">
-    <div class='span8 well offset2'>
+    <% if logged_in? %>
+      <div class='spand4 well text-center'>
+        <%= link_to votes_post_path(post,vote: true), method: :post do %>
+          <i class="icon-chevron-up"></i></br>
+        <% end %>
+        <%= post.count_votes %> votes</br>
+        <%= link_to votes_post_path(post,vote: false), method: :post do %>
+          <i class="icon-chevron-down"></i>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class='span8 well'>
       
       <%= render post.categories %> <!--This passes in each category obj and looks for the category partial in the categories folder -->
       
       <h4><%= link_to post.title, "http://#{post.url}" %></li></h4>
-      <p><%= post.description %></p>
+      <p class="white"><%= post.description %></p>
       <p>
         <span class='quiet'>posted </span>
           <% if post.creator == nil %>

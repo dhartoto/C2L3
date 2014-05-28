@@ -19,9 +19,9 @@
 </ul>
 <div class="tab-content">
   <div class="tab-pane fade in active" id="posts">
-    <p><%= render 'shared/posts', posts: @user.posts %></p>
+    <p><%= render 'shared/posts', posts: @posts %></p>
   </div>
   <div class="tab-pane fade" id="comments">
-    <p><%= render 'shared/comments', {obj: @user, show: true} %></p> 
-</div>
+    <p><%= render 'shared/comments', {obj: @comments, show_post: true} %></p> 
+  </div>
 </div>

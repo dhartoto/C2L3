@@ -17,8 +17,8 @@
       <%= check_box_tag("post[category_ids][]", category.id, @post.categories.include?(category)) %>
       <%= category.name %>
     <% end %>
-
+    <hr/>
     <br/>
-    <%= f.submit(@post.new_record? ? 'Create Post' : 'Update Post', class: 'btn btn-primary') %>
+    <%= f.submit(@post.new_record? ? 'Create Post' : 'Update Post', class: 'btn btn-info') %>
   <% end %>
 </div>

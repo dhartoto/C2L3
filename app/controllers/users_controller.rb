@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
-  before_action :user_access, only: :edit
-  
+  before_action :set_user, only: [:show, :edit, :update]
+  before_action :user_access, only: [:edit, :update]
+
   def show
-    @user = User.find(params[:id])
+    @posts = Post.where(user_id: params[:id]).sort_by{|x| x.count_votes}.reverse
+    @comments = Comment.where(user_id: params[:id]).sort_by{|x| x.count_votes}.reverse
   end
 
   def new
@@ -20,12 +22,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = 'Your profile has been updated.'
       redirect_to root_path
@@ -41,8 +40,12 @@ class UsersController < ApplicationController
   end
 
   def user_access
-    if !params[:id].to_i == session[:user_id]
+    if current_user != @user
       redirect_to root_path
     end
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end
