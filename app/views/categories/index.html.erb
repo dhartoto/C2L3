@@ -1,7 +1,9 @@
-<h1>Select Category to Edit</h1>
+<%= render 'shared/content_title', title: 'Edit Category' %>
 
 <% @categories.each do |cat| %>
-  <%= cat.name %>
-  <%= link_to "Edit", edit_category_path(cat) %>
-  <br/>
+  <div class="well span2 offset2">
+    <%= cat.name %>
+    <%= link_to "Edit", edit_category_path(cat), class: "btn btn-info pull-right" %>
+    <br/>
+  </div>
 <% end %>
